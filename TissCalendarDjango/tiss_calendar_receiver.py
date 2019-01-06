@@ -10,7 +10,9 @@ def strip_subject_id(event) -> str:
 
 
 def get_calendar(request):
-    token = request.GET.get('token', '')
+    get_token = request.GET.get('token', '')
+    re_token = re.findall(r'[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}', get_token)
+    token = re_token[0] if 0 < len(re_token) else None
     url = 'https://tiss.tuwien.ac.at/events/rest/calendar/personal?token={token}'.format(token=token)
     response = requests.get(url)
     if response.status_code == 200:
