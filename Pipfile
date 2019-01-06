@@ -9,6 +9,8 @@ verify_ssl = true
 django = "*"
 requests = "*"
 ics = "*"
+gunicorn = "*"
+django-heroku = "*"
 
 [requires]
 python_version = "3.6"
